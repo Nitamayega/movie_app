@@ -106,12 +106,20 @@ const styles = StyleSheet.create({
   },
   searchButton: {
     backgroundColor: '#8c77a7',
-    borderRadius: 40,
+    borderRadius: 25,
     alignItems: 'center',
     justifyContent: 'center',
-    height: 60,
+    height: 50,
     width: '100%',
-    marginTop: 16,
+    marginTop: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   searchButtonText: {
     color: 'white',

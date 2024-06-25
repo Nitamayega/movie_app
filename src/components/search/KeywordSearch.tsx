@@ -61,12 +61,17 @@ const KeywordSearch = (): JSX.Element => {
     }
   };
 
+  const clearInput = (): void => {
+    setKeyword('');
+    setMovies([]);
+  };
+
   const renderMovieItem = ({ item }: { item: Movie }): JSX.Element => (
     <TouchableOpacity style={styles.movieItemContainer}>
-      <MovieItem 
+      <MovieItem
         movie={item}
         size={coverImageSize}
-        coverType="poster" 
+        coverType="poster"
       />
     </TouchableOpacity>
   );
@@ -92,7 +97,11 @@ const KeywordSearch = (): JSX.Element => {
           onChangeText={setKeyword}
           onSubmitEditing={handleSubmit}
         />
-        <FontAwesome name="search" size={20} color="black" style={styles.icon} onPress={handleSubmit} />
+        {keyword ? (
+          <FontAwesome name="times" size={20} color="black" style={styles.icon} onPress={clearInput} />
+        ) : (
+          <FontAwesome name="search" size={20} color="black" style={styles.icon} onPress={handleSubmit} />
+        )}
       </View>
       {error ? (
         <Text style={styles.errorText}>{error}</Text>
@@ -127,6 +136,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     marginBottom: 10,
     height: 50,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   input: {
     flex: 1,

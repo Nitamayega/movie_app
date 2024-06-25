@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, StatusBar, StyleSheet, FlatList, Dimensions, TouchableOpacity, Alert } from 'react-native';
+import { View, StatusBar, StyleSheet, FlatList, Dimensions, TouchableOpacity, Alert, Text } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import MovieItem from '../components/movies/MovieItem';
 import type { Movie } from '../types/app';
@@ -35,22 +35,28 @@ const Favorite = (): JSX.Element => {
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={favoriteMovies}
-        renderItem={({ item }) => (
-          <TouchableOpacity style={styles.itemContainer}>
-            <MovieItem
-              movie={item}
-              size={{ width: width / 3 - 32, height: (width / 3 - 32) * 1.5 }} // Adjust size accordingly
-              coverType="poster"
-            />
-          </TouchableOpacity>
-        )}
-        keyExtractor={(item) => item.id.toString()}
-        contentContainerStyle={styles.listContainer}
-        numColumns={3} // Set to 3 columns
-        ItemSeparatorComponent={renderSeparator}
-      />
+      {favoriteMovies.length === 0 ? (
+        <View style={styles.emptyContainer}>
+          <Text style={styles.emptyText}>You haven't selected any favorite movies yet.</Text>
+        </View>
+      ) : (
+        <FlatList
+          data={favoriteMovies}
+          renderItem={({ item }) => (
+            <TouchableOpacity style={styles.itemContainer}>
+              <MovieItem
+                movie={item}
+                size={{ width: width / 3 - 32, height: (width / 3 - 32) * 1.5 }} // Adjust size accordingly
+                coverType="poster"
+              />
+            </TouchableOpacity>
+          )}
+          keyExtractor={(item) => item.id.toString()}
+          contentContainerStyle={styles.listContainer}
+          numColumns={3} // Set to 3 columns
+          ItemSeparatorComponent={renderSeparator}
+        />
+      )}
     </View>
   );
 };
@@ -70,6 +76,15 @@ const styles = StyleSheet.create({
   },
   separator: {
     height: 8,
+  },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  emptyText: {
+    fontSize: 16,
+    color: '#888',
   },
 });
 
