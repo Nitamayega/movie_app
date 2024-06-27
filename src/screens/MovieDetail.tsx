@@ -118,6 +118,17 @@ const MovieDetail = ({ route }: any): JSX.Element => {
     );
   }
 
+  const convertMinutesToHours = (minutes) => {
+    if (!minutes || typeof minutes !== 'number') {
+      return 'N/A';
+    }
+
+    const hours = Math.floor(minutes / 60);
+    const remainingMinutes = minutes % 60;
+
+    return `${hours}h ${remainingMinutes}m`;
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <ImageBackground
@@ -132,7 +143,6 @@ const MovieDetail = ({ route }: any): JSX.Element => {
           locations={[0.6, 0.8]}
           style={styles.gradientStyle}
         >
-          <Text style={styles.movieTitle}>{movie?.title}</Text>
           <View style={styles.ratingFavoriteContainer}>
             <View style={styles.ratingContainer}>
               <FontAwesome name="star" size={16} color="yellow" />
@@ -145,6 +155,18 @@ const MovieDetail = ({ route }: any): JSX.Element => {
         </LinearGradient>
       </ImageBackground>
       <View style={styles.detailContainer}>
+        <Text style={styles.movieTitle}>{movie?.title}</Text>
+        <Text>
+          {movie?.genres.map((genre, index) => (
+            <React.Fragment key={genre.id}>
+              {genre.name}
+              {index !== movie.genres.length - 1 ? ', ' : ''}
+            </React.Fragment>
+          ))}
+        </Text>
+        <Text style={styles.gridValue}>
+          Durasi: {convertMinutesToHours(movie?.runtime)}
+        </Text>
         <Text style={styles.overview}>{movie?.overview}</Text>
         <View style={styles.gridContainer}>
           <View style={styles.gridItem}>
@@ -158,7 +180,7 @@ const MovieDetail = ({ route }: any): JSX.Element => {
           <View style={styles.gridItem}>
             <Text style={styles.gridTitle}>Release Date</Text>
             <Text style={styles.gridValue}>
-            {movie?.release_date ? new Date(movie.release_date).toDateString() : 'N/A'}
+              {movie?.release_date ? new Date(movie.release_date).toDateString() : 'N/A'}
             </Text>
           </View>
           <View style={styles.gridItem}>
@@ -203,11 +225,9 @@ const styles = StyleSheet.create({
     height: 300,
   },
   movieTitle: {
-    color: 'white',
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 4,
-    paddingLeft: 8,
   },
   gradientStyle: {
     padding: 8,
