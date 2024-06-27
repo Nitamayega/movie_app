@@ -105,7 +105,7 @@ const MovieDetail = ({ route }: any): JSX.Element => {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#0000ff" />
+        <ActivityIndicator size="large" color="#FF3EA5" />
       </View>
     );
   }
@@ -145,11 +145,11 @@ const MovieDetail = ({ route }: any): JSX.Element => {
         >
           <View style={styles.ratingFavoriteContainer}>
             <View style={styles.ratingContainer}>
-              <FontAwesome name="star" size={16} color="yellow" />
+              <FontAwesome name="star" size={18} color="#FB2576" />
               <Text style={styles.rating}>{movie?.vote_average.toFixed(1)}</Text>
             </View>
             <TouchableOpacity onPress={toggleFavorite}>
-              <FontAwesome name={isFavorite ? "heart" : "heart-o"} size={24} color="pink" />
+              <FontAwesome name={isFavorite ? "heart" : "heart-o"} size={24} color="FF7ED4" />
             </TouchableOpacity>
           </View>
         </LinearGradient>
@@ -192,7 +192,7 @@ const MovieDetail = ({ route }: any): JSX.Element => {
       <View style={styles.recommendationsContainer}>
         <View style={styles.recommendationHeader}>
           <View style={styles.purpleLabel}></View>
-          <Text style={styles.recommendationsTitle}>Recommendations</Text>
+          <Text style={styles.recommendationsTitle}>Rekomendasi</Text>
         </View>
         <FlatList
           horizontal
@@ -214,6 +214,7 @@ const MovieDetail = ({ route }: any): JSX.Element => {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
+    backgroundColor: '#BCD2FF',
   },
   loadingContainer: {
     flex: 1,
@@ -225,7 +226,7 @@ const styles = StyleSheet.create({
     height: 300,
   },
   movieTitle: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: 'bold',
     marginBottom: 4,
   },
@@ -250,7 +251,7 @@ const styles = StyleSheet.create({
     paddingLeft: 8,
   },
   rating: {
-    color: 'yellow',
+    color: '#FF7ED4',
     fontWeight: '700',
   },
   detailContainer: {
@@ -258,7 +259,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   overview: {
-    fontSize: 16,
+    fontSize: 18,
     marginVertical: 8,
   },
   gridContainer: {
@@ -291,11 +292,11 @@ const styles = StyleSheet.create({
     width: 20,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#8978A4',
+    backgroundColor: '#0002A1',
     marginRight: 12,
   },
   recommendationsTitle: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 'bold',
   },
 });

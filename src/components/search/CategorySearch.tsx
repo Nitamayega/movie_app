@@ -55,17 +55,17 @@ const CategorySearch = (): JSX.Element => {
   return (
     <View style={styles.container}>
       {loading ? (
-        <ActivityIndicator size="large" color="#0000ff" />
+        <ActivityIndicator size="large" color="#FF3EA5" />
       ) : (
         <>
           {genres.map((genre) => (
             <TouchableOpacity
               key={genre.id}
-              activeOpacity={0.9}
+              activeOpacity={0.6}
               style={[
                 styles.genreButton,
                 {
-                  backgroundColor: selectedGenres.includes(genre.id) ? '#8978A4' : '#dfd7ec',
+                  backgroundColor: selectedGenres.includes(genre.id) ? '#0002A1' : '#4E97F3',
                 },
               ]}
               onPress={() => handlePress(genre.id)}
@@ -101,13 +101,14 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   genreLabel: {
-    color: 'black',
-    fontSize: 16,
+    color: '4c2e3c',
+    fontSize: 18,
     fontWeight: '400',
     textTransform: 'capitalize',
-  },
+    fontWeight: 'bold',
+    },
   searchButton: {
-    backgroundColor: '#8c77a7',
+    backgroundColor: '#0002A1',
     borderRadius: 25,
     alignItems: 'center',
     justifyContent: 'center',
@@ -124,11 +125,11 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   searchButtonText: {
-    color: 'white',
-    fontSize: 16,
+    color: '#fed3cd',
+    fontSize: 26,
     fontWeight: 'bold',
     textTransform: 'uppercase',
-  },
+   },
 });
 
 export default CategorySearch;

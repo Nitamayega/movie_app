@@ -130,13 +130,13 @@ const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#FFB5DA',
     borderRadius: 25,
     paddingVertical: 5,
     paddingHorizontal: 15,
     marginBottom: 10,
     height: 50,
-    shadowColor: "#000",
+    shadowColor: '#6420AA',
     shadowOffset: {
       width: 0,
       height: 2,
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    fontSize: 16,
+    fontSize: 18,
     marginLeft: 5,
   },
   icon: {

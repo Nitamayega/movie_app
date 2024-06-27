@@ -33,7 +33,7 @@ const MovieItem = React.memo(({ movie, size, coverType }: MovieItemProps): JSX.E
           <Text style={styles.movieTitle}>{movie.title}</Text>
           {movie.vote_average !== undefined && (
             <View style={styles.ratingContainer}>
-              <FontAwesome name="star" size={16} color="yellow" />
+              <FontAwesome name="star" size={18} color="#FB2576" />
               <Text style={styles.rating}>{movie.vote_average.toFixed(1)}</Text>
             </View>
           )}
@@ -52,7 +52,8 @@ const styles = StyleSheet.create({
   },
   movieTitle: {
     color: 'white',
-    fontSize: 14,
+    fontSize: 15,
+    fontWeight: 'bold',
   },
   gradientStyle: {
     padding: 8,
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   rating: {
-    color: 'yellow',
+    color: '#FF7ED4',
     fontWeight: '700',
     marginLeft: 4,
   },
