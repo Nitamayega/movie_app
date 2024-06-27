@@ -81,10 +81,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#BCD2FF'
   },
   emptyText: {
     fontSize: 16,
-    color: '#888',
+    color: '#025285',
   },
 });
 

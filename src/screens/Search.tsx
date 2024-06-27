@@ -38,6 +38,8 @@ const SearchScreen = (): JSX.Element => {
 const styles = StyleSheet.create({
   container: {
     padding: 16,
+    backgroundColor: '#BCD2FF',
+    height: '100%',
   },
   title: {
     fontSize: 30,
@@ -56,7 +58,7 @@ const styles = StyleSheet.create({
     height: 40,
   },
   topBarLabel: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: '400',
     textTransform: 'capitalize',
   },

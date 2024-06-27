@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     rowGap: 16,
+    backgroundColor: '#BCD2FF'
   },
 });
 

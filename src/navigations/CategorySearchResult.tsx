@@ -109,13 +109,14 @@ const CategorySearchResult = ({ route }: { route: any }): JSX.Element => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#7faed0',
     paddingHorizontal: 16,
   },
   headerText: {
-    fontSize: 24,
+    fontSize: 26,
     marginVertical: 16,
     textAlign: 'center',
+    fontWeight: 'bold',
   },
   movieList: {
     justifyContent: 'center', // Center items horizontally
