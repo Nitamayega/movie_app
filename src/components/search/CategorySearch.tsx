@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, StyleSheet, View, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { Text, StyleSheet, View, TouchableOpacity, ActivityIndicator, ScrollView } from 'react-native';
 import { useNavigation, StackActions } from '@react-navigation/native';
 import { API_ACCESS_TOKEN } from '@env';
 
@@ -89,6 +89,8 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     gap: 8,
     paddingHorizontal: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   genreButton: {
     alignItems: 'center',
