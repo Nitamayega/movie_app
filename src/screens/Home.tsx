@@ -1,6 +1,7 @@
-import React from 'react';
-import { ScrollView, View, StatusBar, StyleSheet, ImageBackground } from 'react-native';
+import React, { useState } from 'react';
+import { ScrollView, View, StatusBar, StyleSheet, ImageBackground, TouchableOpacity, Text } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useDarkMode } from '../components/DarkModeContext';
 import type { MovieListProps } from '../types/app';
 import MovieList from '../components/movies/MovieList';
 
@@ -28,6 +29,8 @@ const movieLists: MovieListProps[] = [
 ];
 
 const HomeScreen = (): JSX.Element => {
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
+
   return (
     <ScrollView>
       <ImageBackground
@@ -39,8 +42,14 @@ const HomeScreen = (): JSX.Element => {
           colors={['rgba(0,0,0,0.7)', 'rgba(0,0,0,0.3)', 'rgba(0,0,0,0)']}
           style={styles.gradient}
         />
+        <TouchableOpacity
+          style={styles.toggleButton}
+          onPress={toggleDarkMode}
+        >
+          <Text style={styles.toggleButtonText}>{isDarkMode ? 'Light Mode' : 'Dark Mode'}</Text>
+        </TouchableOpacity>
       </ImageBackground>
-      <View style={styles.container}>
+      <View style={[styles.container, { backgroundColor: isDarkMode ? '#000' : '#BCD2FF' }]}>
         {movieLists.map((movieList, index) => (
           <MovieList
             title={movieList.title}
@@ -70,11 +79,21 @@ const styles = StyleSheet.create({
     height: 190,
   },
   container: {
-    marginTop: StatusBar.currentHeight ?? 32,
+    paddingTop: StatusBar.currentHeight ?? 32,
     alignItems: 'center',
     justifyContent: 'center',
     rowGap: 16,
-    backgroundColor: '#BCD2FF'
+  },
+  toggleButton: {
+    position: 'absolute',
+    bottom: 10,
+    right: 10,
+    padding: 10,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    borderRadius: 5,
+  },
+  toggleButtonText: {
+    color: '#FFF',
   },
 });
 

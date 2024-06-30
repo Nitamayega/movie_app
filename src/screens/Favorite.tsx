@@ -3,12 +3,14 @@ import { View, StatusBar, StyleSheet, FlatList, Dimensions, TouchableOpacity, Al
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import MovieItem from '../components/movies/MovieItem';
 import type { Movie } from '../types/app';
+import { useDarkMode } from '../components/DarkModeContext';
 import { useIsFocused } from '@react-navigation/native';
 
 const Favorite = (): JSX.Element => {
   const [favoriteMovies, setFavoriteMovies] = useState<Movie[]>([]);
   const { width } = Dimensions.get('window');
   const isFocused = useIsFocused();
+  const { isDarkMode } = useDarkMode();
 
   useEffect(() => {
     if (isFocused) {
@@ -34,10 +36,12 @@ const Favorite = (): JSX.Element => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: isDarkMode ? '#000' : '#BCD2FF' }]}>
       {favoriteMovies.length === 0 ? (
-        <View style={styles.emptyContainer}>
-          <Text style={styles.emptyText}>You haven't selected any favorite movies yet.</Text>
+        <View style={[styles.emptyContainer, { backgroundColor: isDarkMode ? '#000' : '#BCD2FF' }]}>
+          <Text style={[styles.emptyText, { color: isDarkMode ? '#FFF' : '#025285' }]}>
+            You haven't selected any favorite movies yet.
+          </Text>
         </View>
       ) : (
         <FlatList
@@ -63,7 +67,7 @@ const Favorite = (): JSX.Element => {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: StatusBar.currentHeight ?? 32,
+    paddingTop: StatusBar.currentHeight ?? 32,
     flex: 1,
     paddingHorizontal: 16,
   },

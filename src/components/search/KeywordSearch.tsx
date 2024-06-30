@@ -4,6 +4,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { API_ACCESS_TOKEN } from '@env';
 import MovieItem from '../movies/MovieItem';
 import type { Movie } from '../../types/app';
+import { useDarkMode } from '../../components/DarkModeContext';
 
 const coverImageSize = {
   width: Dimensions.get('window').width / 3 - 32,
@@ -16,7 +17,6 @@ const KeywordSearch = (): JSX.Element => {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [error, setError] = useState<string | null>(null);
-  const { width } = Dimensions.get('window');
 
   useEffect(() => {
     setMovies([]);
@@ -86,6 +86,8 @@ const KeywordSearch = (): JSX.Element => {
       </View>
     );
   };
+
+  const { isDarkMode } = useDarkMode();
 
   return (
     <View style={styles.container}>

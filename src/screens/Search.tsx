@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import KeywordSearch from '../components/search/KeywordSearch';
 import CategorySearch from '../components/search/CategorySearch';
+import { useDarkMode } from '../components/DarkModeContext';
 
 const SearchScreen = (): JSX.Element => {
   const [selectedBar, setSelectedBar] = useState<string>('keyword');
+  const { isDarkMode } = useDarkMode();
 
   const getButtonStyle = (item: string, index: number) => ({
     ...styles.topBar,
@@ -13,9 +15,11 @@ const SearchScreen = (): JSX.Element => {
   });
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: isDarkMode ? '#000' : '#BCD2FF' }]}>
       <View>
-        <Text style={styles.title}>What would you like to watch?</Text>
+        <Text style={[styles.title, { color: isDarkMode ? '#FFF' : '#025285' }]}>
+          What would you like to watch?
+        </Text>
         <View style={styles.topBarContainer}>
           {['keyword', 'category'].map((item: string, index: number) => (
             <TouchableOpacity
@@ -25,7 +29,7 @@ const SearchScreen = (): JSX.Element => {
               onPress={() => setSelectedBar(item)}
               accessibilityLabel={`Search by ${item}`}
             >
-              <Text style={styles.topBarLabel}>{item}</Text>
+              <Text style={[styles.topBarLabel, { color: isDarkMode ? '#FFF' : '#025285' }]}>{item}</Text>
             </TouchableOpacity>
           ))}
         </View>

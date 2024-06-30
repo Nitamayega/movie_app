@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { View, Text, StyleSheet, FlatList, ActivityIndicator } from 'react-native'
 import type { MovieListProps, Movie } from '../../types/app'
 import { API_ACCESS_TOKEN } from '@env'
+import { useDarkMode } from '../DarkModeContext';
 import MovieItem from './MovieItem'
 
 const coverImageSize = {
@@ -48,11 +49,15 @@ const MovieList = ({ title, path, coverType }: MovieListProps): JSX.Element => {
     getMovieList()
   }, [getMovieList])
 
+  const { isDarkMode } = useDarkMode();
+
   return (
     <View>
       <View style={styles.header}>
-        <View style={styles.purpleLabel}></View>
-        <Text style={styles.title}>{title}</Text>
+        <View style={[styles.purpleLabel, { backgroundColor: isDarkMode ? '#8978A4' : '#0002A1' }]}></View>
+        <Text style={[styles.title, { color: isDarkMode ? '#FFF' : '#025285' }]}>
+          {title}
+        </Text>
       </View>
       {loading ? (
         <ActivityIndicator size="large" color="#0000ff" />

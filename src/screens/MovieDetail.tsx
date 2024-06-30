@@ -5,6 +5,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import type { Movie } from '../types/app';
 import MovieItem from '../components/movies/MovieItem';
+import { useDarkMode } from '../components/DarkModeContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const MovieDetail = ({ route }: any): JSX.Element => {
@@ -14,6 +15,7 @@ const MovieDetail = ({ route }: any): JSX.Element => {
   const [recommendations, setRecommendations] = useState<Movie[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>('');
+  const { isDarkMode } = useDarkMode();
 
   useEffect(() => {
     fetchMovieDetail();
@@ -130,7 +132,7 @@ const MovieDetail = ({ route }: any): JSX.Element => {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView contentContainerStyle={[styles.container, { backgroundColor: isDarkMode ? '#000' : '#BCD2FF' }]}>
       <ImageBackground
         resizeMode="cover"
         style={styles.backgroundImage}
@@ -149,14 +151,14 @@ const MovieDetail = ({ route }: any): JSX.Element => {
               <Text style={styles.rating}>{movie?.vote_average.toFixed(1)}</Text>
             </View>
             <TouchableOpacity onPress={toggleFavorite}>
-              <FontAwesome name={isFavorite ? "heart" : "heart-o"} size={24} color="FF7ED4" />
+              <FontAwesome name={isFavorite ? "heart" : "heart-o"} size={24} color="#FB2576" />
             </TouchableOpacity>
           </View>
         </LinearGradient>
       </ImageBackground>
       <View style={styles.detailContainer}>
-        <Text style={styles.movieTitle}>{movie?.title}</Text>
-        <Text>
+        <Text style={[styles.movieTitle, { color: isDarkMode ? '#FFF' : '#025285' }]}>{movie?.title}</Text>
+        <Text style={[{ color: isDarkMode ? '#FFF' : '#025285' }]}>
           {movie?.genres.map((genre, index) => (
             <React.Fragment key={genre.id}>
               {genre.name}
@@ -164,35 +166,35 @@ const MovieDetail = ({ route }: any): JSX.Element => {
             </React.Fragment>
           ))}
         </Text>
-        <Text style={styles.gridValue}>
+        <Text style={[styles.gridValue, { color: isDarkMode ? '#FFF' : '#025285' }]}>
           Durasi: {convertMinutesToHours(movie?.runtime)}
         </Text>
-        <Text style={styles.overview}>{movie?.overview}</Text>
+        <Text style={[styles.overview, { color: isDarkMode ? '#FFF' : '#025285' }]}>{movie?.overview}</Text>
         <View style={styles.gridContainer}>
           <View style={styles.gridItem}>
-            <Text style={styles.gridTitle}>Original Language</Text>
-            <Text style={styles.gridValue}>{movie?.original_language}</Text>
+            <Text style={[styles.gridTitle, { color: isDarkMode ? '#FFF' : '#025285' }]}>Original Language</Text>
+            <Text style={[styles.gridValue, { color: isDarkMode ? '#FFF' : '#025285' }]}>{movie?.original_language}</Text>
           </View>
           <View style={styles.gridItem}>
-            <Text style={styles.gridTitle}>Popularity</Text>
-            <Text style={styles.gridValue}>{movie?.popularity.toFixed(2)}</Text>
+            <Text style={[styles.gridTitle, { color: isDarkMode ? '#FFF' : '#025285' }]}>Popularity</Text>
+            <Text style={[styles.gridValue, { color: isDarkMode ? '#FFF' : '#025285' }]}>{movie?.popularity.toFixed(2)}</Text>
           </View>
           <View style={styles.gridItem}>
-            <Text style={styles.gridTitle}>Release Date</Text>
-            <Text style={styles.gridValue}>
+            <Text style={[styles.gridTitle, { color: isDarkMode ? '#FFF' : '#025285' }]}>Release Date</Text>
+            <Text style={[styles.gridValue, { color: isDarkMode ? '#FFF' : '#025285' }]}>
               {movie?.release_date ? new Date(movie.release_date).toDateString() : 'N/A'}
             </Text>
           </View>
           <View style={styles.gridItem}>
-            <Text style={styles.gridTitle}>Vote Count</Text>
-            <Text style={styles.gridValue}>{movie?.vote_count}</Text>
+            <Text style={[styles.gridTitle, { color: isDarkMode ? '#FFF' : '#025285' }]}>Vote Count</Text>
+            <Text style={[styles.gridValue, { color: isDarkMode ? '#FFF' : '#025285' }]}>{movie?.vote_count}</Text>
           </View>
         </View>
       </View>
       <View style={styles.recommendationsContainer}>
         <View style={styles.recommendationHeader}>
-          <View style={styles.purpleLabel}></View>
-          <Text style={styles.recommendationsTitle}>Rekomendasi</Text>
+          <View style={[styles.purpleLabel, { backgroundColor: isDarkMode ? '#8978A4' : '#0002A1' }]}></View>
+          <Text style={[styles.recommendationsTitle, { color: isDarkMode ? '#FFF' : '#025285' }]}>Rekomendasi</Text>
         </View>
         <FlatList
           horizontal
@@ -207,7 +209,7 @@ const MovieDetail = ({ route }: any): JSX.Element => {
           keyExtractor={(item) => item.id.toString()}
         />
       </View>
-    </ScrollView>
+    </ScrollView >
   );
 };
 
@@ -292,7 +294,7 @@ const styles = StyleSheet.create({
     width: 20,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#0002A1',
+    backgroundColor: '#8978A4',
     marginRight: 12,
   },
   recommendationsTitle: {
